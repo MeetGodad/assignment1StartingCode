@@ -28,22 +28,24 @@ public class AppDriver {
     public static void main(String[] args) {
         // Read the data file and create an array of shapes
     	 List<shapes.Shape> shapes = new ArrayList<>();
-         try (BufferedReader br = new BufferedReader(new FileReader("./res/shapes1.txt"))) {
-        	 String[] line;
+         try (BufferedReader br = new BufferedReader(new FileReader("./res/shapes2.txt"))) {
+        	 String line;
              String shapeType;
              double height, length;
-             while ((line = br.readLine().split("\\s+")) != null) {
-                 shapeType = line[0];
-                 height = Double.parseDouble(line[1]);
-                 length = Double.parseDouble(line[2]);
+             while ((line = br.readLine()) != null) {
+            	 String[] line1;
+            	 line1 = br.readLine().split("\\s+");
+                 shapeType = line1[0];
+                 height = Double.parseDouble(line1[1]);
+                 length = Double.parseDouble(line1[2]);
 
                  switch (shapeType) {
                      case "Cylinder":
-                         double radius1 = Double.parseDouble(line[2]);
+                         double radius1 = Double.parseDouble(line1[2]);
                          shapes.add((Shape) new Cylinder(height, radius1));
                          break;
                      case "Cone":
-                    	 double radius11 = Double.parseDouble(line[2]);
+                    	 double radius11 = Double.parseDouble(line1[2]);
                          shapes.add((Shape) new Cone(height, radius11));
                          break;
                      case "OctagonalPrism":
