@@ -130,13 +130,13 @@ public class SortingAlgorithms {
 	    }
 	}
     
-	public class QuickSort {
+	public static class QuickSort {
 
 	    public <T extends Comparable<T>> void sort(T[] arr) {
 	        sort(arr, 0, arr.length - 1);
 	    }
 
-	    public  <T> void sort(List<T> list, Comparator<T> comparator) {
+	    public static  <T> void sort(List<T> list, Comparator<T> comparator) {
 	        sort(list, 0, list.size() - 1, comparator);
 	    }
 
@@ -148,7 +148,7 @@ public class SortingAlgorithms {
 	        }
 	    }
 
-	    private <T> void sort(List<T> list, int low, int high, Comparator<T> comparator) {
+	    private static <T> void sort(List<T> list, int low, int high, Comparator<T> comparator) {
 	        if (low < high) {
 	            int pi = partition(list, low, high, comparator);
 	            sort(list, low, pi - 1, comparator);
@@ -169,7 +169,7 @@ public class SortingAlgorithms {
 	        return i + 1;
 	    }
 
-	    private <T> int partition(List<T> list, int low, int high, Comparator<T> comparator) {
+	    private static <T> int partition(List<T> list, int low, int high, Comparator<T> comparator) {
 	        T pivot = list.get(high);
 	        int i = low - 1;
 	        for (int j = low; j < high; j++) {
@@ -188,7 +188,7 @@ public class SortingAlgorithms {
 	        arr[j] = temp;
 	    }
 
-	    private <T> void swap(List<T> list, int i, int j) {
+	    private static <T> void swap(List<T> list, int i, int j) {
 	        T temp = list.get(i);
 	        list.set(i, list.get(j));
 	        list.set(j, temp);

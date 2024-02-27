@@ -1,17 +1,15 @@
 package shapes;
 
-public class OctagonalPrism {
+public class OctagonalPrism extends shapes.Shape {
     private double sideLength;
     private double height;
 
     public OctagonalPrism(double sideLength, double height) {
+    	super(height);
         this.sideLength = sideLength;
         this.height = height;
     }
 
-    public double getArea() {
-        return 2 * (1 + Math.sqrt(2)) * sideLength * sideLength;
-    }
 
     public double getVolume() {
         return sideLength * sideLength * height;
@@ -20,4 +18,10 @@ public class OctagonalPrism {
     public double getHeight() {
         return height;
     }
+
+	@Override
+	public double getBaseArea() {
+		return 2 * (1 + Math.sqrt(2)) * sideLength * sideLength;
+    }
+	
 }

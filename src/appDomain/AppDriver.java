@@ -28,42 +28,38 @@ public class AppDriver {
     public static void main(String[] args) {
         // Read the data file and create an array of shapes
     	 List<shapes.Shape> shapes = new ArrayList<>();
-         try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
-             int numShapes = Integer.parseInt(br.readLine());
-             for (int i = 0; i < numShapes; i++) {
-                 String[] line = br.readLine().split("\\s+");
-                 String shapeType = line[0];
-                 double height = Double.parseDouble(line[1]);
-                 double length = Double.parseDouble(line[2]);
-                 String baseType = line[1];
+         try (BufferedReader br = new BufferedReader(new FileReader("./res/shapes1.txt"))) {
+        	 String[] line;
+             String shapeType;
+             double height, length;
+             while ((line = br.readLine().split("\\s+")) != null) {
+                 shapeType = line[0];
+                 height = Double.parseDouble(line[1]);
+                 length = Double.parseDouble(line[2]);
+
                  switch (shapeType) {
                      case "Cylinder":
-                         double radius = Double.parseDouble(line[2]);
-                         shapes.add((Shape) new Cylinder(height, radius));
+                         double radius1 = Double.parseDouble(line[2]);
+                         shapes.add((Shape) new Cylinder(height, radius1));
                          break;
                      case "Cone":
-                         shapes.add((Shape) new Cone(height, radius));
+                    	 double radius11 = Double.parseDouble(line[2]);
+                         shapes.add((Shape) new Cone(height, radius11));
                          break;
-                     case "Prism":
-                         switch (baseType) {
-                             case "Octagonal":
-                                 shapes.add((Shape) new OctagonalPrism(height, length));
-                                 break;
-                             case "Pentagonal":
-                                 shapes.add((Shape) new PentagonalPrism(height, length));
-                                 break;
-                             case "Square":
-                                 shapes.add((Shape) new SquarePrism(height, length));
-                                 break;
-                             case "Triangular":
-                                 shapes.add((Shape) new TriangularPrism(height, length));
-                                 break;
-                             default:
-                                 throw new IllegalArgumentException("Invalid base type");
-                         }
+                     case "OctagonalPrism":
+                    	 shapes.add((Shape) new OctagonalPrism(height, length));
                          break;
+                     case "PentagonalPrism":
+                         shapes.add((Shape) new PentagonalPrism(height, length));
+                         break;
+                     case "SquarePrism":
+                          shapes.add((Shape) new SquarePrism(height, length));
+                          break;
+                     case "TriangularPrism":
+                          shapes.add((Shape) new TriangularPrism(height, length));
+                          break;
                      case "Pyramid":
-                         shapes.add((Shape) new Pyramid(length, height));
+                         shapes.add((Shape) new Pyramid(height, length));
                          break;
                      default:
                          throw new IllegalArgumentException("Invalid shape type");

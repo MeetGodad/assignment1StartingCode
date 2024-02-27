@@ -1,4 +1,3 @@
-10
 OctagonalPrism 25253.611 29464.463
 Pyramid 34976.672 8556.669
 TriangularPrism 12209.184 38774.693
