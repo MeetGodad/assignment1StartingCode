@@ -22,4 +22,8 @@ public class Pyramid extends shapes.Shape {
 	public double getBaseArea() {
 		 return Math.sqrt(2) * baseSideLength * baseSideLength;
 	}
+	
+	public String toString() {
+		return String.format("%s [Height: %.2f, BaseSideLength: %.2f];", getClass().getSimpleName(), height, baseSideLength );
+	}
 }

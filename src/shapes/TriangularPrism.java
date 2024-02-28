@@ -17,6 +17,9 @@ public class TriangularPrism extends shapes.Shape {
     public double getVolume() {
         return getBaseArea() * height;
     }
-
+    
+    public String toString() {
+		return String.format("%s [Height: %.2f, SideLength: %.2f];", getClass().getSimpleName(), height, sideLength );
+	}
 	
 }

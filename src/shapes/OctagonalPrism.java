@@ -24,4 +24,8 @@ public class OctagonalPrism extends shapes.Shape {
 		return 2 * (1 + Math.sqrt(2)) * sideLength * sideLength;
     }
 	
+	public String toString() {
+		return String.format("%s [Height: %.2f, SideLength: %.2f, BaseArea: %.2f];", getClass().getSimpleName(), height, sideLength , getBaseArea() );
+	}
+	
 }
