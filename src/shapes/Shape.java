@@ -19,7 +19,13 @@ public abstract class Shape implements Comparable<Shape> {
 
     @Override
     public int compareTo(Shape other) {
-        return Double.compare(this.getHeight(), other.getHeight());
+        if (this.getHeight() > other.getHeight()) {
+            return -1;
+        } else if (this.getHeight() < other.getHeight()) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public static Comparator<Shape> getComparator(String comparisonType) {
