@@ -23,9 +23,9 @@ public class OctagonalPrism extends shapes.Shape {
 	public double getBaseArea() {
 		return 2 * (1 + Math.sqrt(2)) * sideLength * sideLength;
     }
-	
+	@Override
 	public String toString() {
-		return String.format("%s [Height: %.2f, SideLength: %.2f, BaseArea: %.2f];", getClass().getSimpleName(), height, sideLength , getBaseArea() );
+		return String.format("%s [Height: %.2f, SideLength: %.2f, BaseArea: %.2f, Volume: %.2f];", getClass().getSimpleName(), height, sideLength , getBaseArea(), getVolume() );
 	}
 	
 }

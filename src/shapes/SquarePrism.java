@@ -22,8 +22,8 @@ public class SquarePrism extends shapes.Shape {
 	public double getBaseArea() {
 		return 4 * sideLength * sideLength;
 	}
-	
+	@Override
 	public String toString() {
-		return String.format("%s [Height: %.2f, SideLength: %.2f];", getClass().getSimpleName(), height, sideLength );
+		return String.format("%s [Height: %.2f, SideLength: %.2f, BaseArea: %.2f, Volume: %.2f];", getClass().getSimpleName(), height, sideLength, getBaseArea(), getVolume() );
 	}
 }

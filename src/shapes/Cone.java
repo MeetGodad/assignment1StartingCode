@@ -26,6 +26,6 @@ public class Cone extends shapes.Shape {
 
 	@Override
 	public String toString() {
-		return String.format("%s [Height: %.2f, Radius: %.2f, BaseArea: %.2f];", getClass().getSimpleName(), height, radius , getBaseArea() );
+		return String.format("%s [Height: %.2f, Radius: %.2f, BaseArea: %.2f, Volume: %.2f];", getClass().getSimpleName(), height, radius , getBaseArea(), getVolume() );
 	}
 }

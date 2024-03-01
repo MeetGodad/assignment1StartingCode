@@ -22,8 +22,8 @@ public class AppDriver {
 
         shapes.Shape[] shapes;
         String filename = null;
-        String comparisonType = "height";
-        String sortingAlgorithm = "quick";
+        String comparisonType = "";
+        String sortingAlgorithm = "";
 
         int i = 0;
         while (i < args.length) {
@@ -33,13 +33,13 @@ public class AppDriver {
                 filename = args[++i];
             } else if (args[i].equalsIgnoreCase("-t")) {
                 comparisonType = args[++i];
-                if (!comparisonType.equalsIgnoreCase("a") && !comparisonType.equalsIgnoreCase("v")) {
+                if (!comparisonType.equalsIgnoreCase("a") && !comparisonType.equalsIgnoreCase("v")&& !comparisonType.equalsIgnoreCase("h")) {
                     System.err.println("Invalid comparison type");
                     return;
                 }
             } else if (args[i].equalsIgnoreCase("-T")) {
                 comparisonType = args[++i];
-                if (!comparisonType.equalsIgnoreCase("a") && !comparisonType.equalsIgnoreCase("v")) {
+                if (!comparisonType.equalsIgnoreCase("a") && !comparisonType.equalsIgnoreCase("v")&& !comparisonType.equalsIgnoreCase("h")) {
                     System.err.println("Invalid comparison type");
                     return;
                 }
@@ -127,15 +127,17 @@ public class AppDriver {
             return;
         }
 
+      
         // Sort the array of shapes
         long startTime = System.currentTimeMillis();
         Comparator<shapes.Shape> comparator = ShapeComparator.COMPARE_BY_HEIGHT;
-        if (comparisonType.equalsIgnoreCase("baseArea")) {
+        if (comparisonType.equalsIgnoreCase("a")) {
             comparator = ShapeComparator.COMPARE_BY_BASE_AREA;
-        } else if (comparisonType.equalsIgnoreCase("volume")) {
+        } else if (comparisonType.equalsIgnoreCase("v")) {
             comparator = ShapeComparator.COMPARE_BY_VOLUME;
+        }else if (comparisonType.equalsIgnoreCase("h")) {
+            comparator = ShapeComparator.COMPARE_BY_HEIGHT;
         }
-
         switch (sortingAlgorithm) {
             case "b":
                 BubbleSort.sort(shapes, comparator);
@@ -162,7 +164,7 @@ public class AppDriver {
 
         System.out.println("\nSorted shapes:");
 
-        for (int j = 0; i < shapes.length; j++) {
+        for (int j = 0; j < shapes.length; j++) {
             if (j == 0 || j == shapes.length - 1 || j % 1000 == 0) {
                 System.out.printf("%d. %s%n", j + 1, shapes[j]);
             }

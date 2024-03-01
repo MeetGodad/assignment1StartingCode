@@ -23,9 +23,9 @@ public class PentagonalPrism extends shapes.Shape {
 	public double getBaseArea() {
 		return 0.5 * Math.sqrt(5 * (5 + 2 * Math.sqrt(5))) * sideLength * sideLength;
 	}
-	@Ovveride
+	@Override
 	public String toString() {
-		return String.format("%s [Height: %.2f, SideLength: %.2f, BaseArea: %.2f];", getClass().getSimpleName(), height, sideLength, getBaseArea() );
+		return String.format("%s [Height: %.2f, SideLength: %.2f, BaseArea: %.2f, Volume: %.2f];", getClass().getSimpleName(), height, sideLength, getBaseArea(), getVolume() );
 	}
 	
 }
