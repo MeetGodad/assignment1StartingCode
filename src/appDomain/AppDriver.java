@@ -21,8 +21,53 @@ public class AppDriver {
     public static void main(String[] args) {
 
         shapes.Shape[] shapes;
+        String filename = null;
+        String comparisonType = "height";
+        String sortingAlgorithm = "quick";
 
-        try (BufferedReader br = new BufferedReader(new FileReader("./res/shapes2.txt"))) {
+        int i = 0;
+        while (i < args.length) {
+            if (args[i].equalsIgnoreCase("-f")) {
+                filename = args[++i];
+            } else if (args[i].equalsIgnoreCase("-F")) {
+                filename = args[++i];
+            } else if (args[i].equalsIgnoreCase("-t")) {
+                comparisonType = args[++i];
+                if (!comparisonType.equalsIgnoreCase("a") && !comparisonType.equalsIgnoreCase("v")) {
+                    System.err.println("Invalid comparison type");
+                    return;
+                }
+            } else if (args[i].equalsIgnoreCase("-T")) {
+                comparisonType = args[++i];
+                if (!comparisonType.equalsIgnoreCase("a") && !comparisonType.equalsIgnoreCase("v")) {
+                    System.err.println("Invalid comparison type");
+                    return;
+                }
+            } else if (args[i].equalsIgnoreCase("-s")) {
+                sortingAlgorithm = args[++i];
+                if (!sortingAlgorithm.equalsIgnoreCase("b") && !sortingAlgorithm.equalsIgnoreCase("s") && !sortingAlgorithm.equalsIgnoreCase("i") && !sortingAlgorithm.equalsIgnoreCase("m") && !sortingAlgorithm.equalsIgnoreCase("q")) {
+                    System.err.println("Invalid sorting algorithm");
+                    return;
+                }
+            } else if (args[i].equalsIgnoreCase("-S")) {
+                sortingAlgorithm = args[++i];
+                if (!sortingAlgorithm.equalsIgnoreCase("b") && !sortingAlgorithm.equalsIgnoreCase("s") && !sortingAlgorithm.equalsIgnoreCase("i") && !sortingAlgorithm.equalsIgnoreCase("m") && !sortingAlgorithm.equalsIgnoreCase("q")) {
+                    System.err.println("Invalid sorting algorithm");
+                    return;
+                }
+            } else {
+                System.err.println("Invalid command line argument: " + args[i]);
+                return;
+            }
+            i++;
+        }
+
+        if (filename == null) {
+            System.err.println("A filename must be provided with the -f or -F argument.");
+            return;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
             int shapeCount = Integer.parseInt(br.readLine());
             shapes = new shapes.Shape[shapeCount];
@@ -82,29 +127,6 @@ public class AppDriver {
             return;
         }
 
-        // Parse command line arguments
-        String comparisonType = "baseArea";
-        String sortingAlgorithm = "insertion";
-        if (args.length > 0) {
-            if (args[0].equals("-t")) {
-                comparisonType = args[1];
-                if (!comparisonType.equalsIgnoreCase("height") && !comparisonType.equalsIgnoreCase("baseArea")
-                        && !comparisonType.equalsIgnoreCase("volume")) {
-                    System.err.println("Invalid comparison type");
-                    return;
-                }
-            }
-            if (args[1].equals("-s")) {
-                sortingAlgorithm = args[2];
-                if (!sortingAlgorithm.equalsIgnoreCase("bubble") && !sortingAlgorithm.equalsIgnoreCase("selection")
-                        && !sortingAlgorithm.equalsIgnoreCase("insertion") &&
-                        !sortingAlgorithm.equalsIgnoreCase("merge") && !sortingAlgorithm.equalsIgnoreCase("quick")) {
-                    System.err.println("Invalid sorting algorithm");
-                    return;
-                }
-            }
-        }
-
         // Sort the array of shapes
         long startTime = System.currentTimeMillis();
         Comparator<shapes.Shape> comparator = ShapeComparator.COMPARE_BY_HEIGHT;
@@ -115,19 +137,19 @@ public class AppDriver {
         }
 
         switch (sortingAlgorithm) {
-            case "bubble":
+            case "b":
                 BubbleSort.sort(shapes, comparator);
                 break;
-            case "selection":
+            case "s":
                 SelectionSort.sort(shapes, comparator);
                 break;
-            case "insertion":
+            case "i":
                 InsertionSort.sort(shapes, comparator);
                 break;
-            case "merge":
+            case "m":
                 MergeSort.sort(shapes, comparator);
                 break;
-            case "quick":
+            case "q":
                 QuickSort.sort(shapes, comparator);
                 break;
             default:
@@ -140,9 +162,9 @@ public class AppDriver {
 
         System.out.println("\nSorted shapes:");
 
-        for (int i = 0; i < shapes.length; i++) {
-            if (i == 0 || i == shapes.length - 1 || i % 1000 == 0) {
-                System.out.printf("%d. %s%n", i + 1, shapes[i]);
+        for (int j = 0; i < shapes.length; j++) {
+            if (j == 0 || j == shapes.length - 1 || j % 1000 == 0) {
+                System.out.printf("%d. %s%n", j + 1, shapes[j]);
             }
         }
     }
