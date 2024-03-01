@@ -224,24 +224,23 @@ public class SortingAlgorithms {
 	        arr[j] = temp;
 	    }
 	}
-		public static class HeapSort {
+	
+	public static class HeapSort {
 
 	    public static <T> void sort(T[] arr, Comparator<T> comparator) {
 	        int n = arr.length;
 
-	        // Build max heap
 	        for (int i = n / 2 - 1; i >= 0; i--) {
 	            heapify(arr, n, i, comparator);
 	        }
 
-	        // Extract elements from the heap one by one
+	        
 	        for (int i = n - 1; i > 0; i--) {
-	            // Swap the root (maximum element) with the last element
+	            
 	            T temp = arr[0];
 	            arr[0] = arr[i];
 	            arr[i] = temp;
 
-	           
 	            heapify(arr, i, 0, comparator);
 	        }
 	    }
@@ -251,17 +250,13 @@ public class SortingAlgorithms {
 	        int left = 2 * i + 1;
 	        int right = 2 * i + 2;
 
-	        // Compare with left child
-	        if (left < n && comparator.compare(arr[left], arr[largest]) > 0) {
+	        if (left < n && comparator.compare(arr[left], arr[largest]) < 0) {
 	            largest = left;
 	        }
-
-	        // Compare with right child
-	        if (right < n && comparator.compare(arr[right], arr[largest]) > 0) {
+	        if (right < n && comparator.compare(arr[right], arr[largest]) < 0) {
 	            largest = right;
 	        }
 
-	        
 	        if (largest != i) {
 	            T temp = arr[i];
 	            arr[i] = arr[largest];
@@ -271,4 +266,5 @@ public class SortingAlgorithms {
 	        }
 	    }
 	}
+	
 }
