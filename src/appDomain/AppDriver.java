@@ -3,6 +3,7 @@ package appDomain;
 import java.util.*;
 import java.io.*;
 import appDomain.SortingAlgorithms.BubbleSort;
+import appDomain.SortingAlgorithms.HeapSort;
 import appDomain.SortingAlgorithms.InsertionSort;
 import appDomain.SortingAlgorithms.MergeSort;
 import appDomain.SortingAlgorithms.QuickSort;
@@ -45,13 +46,13 @@ public class AppDriver {
                 }
             } else if (args[i].equalsIgnoreCase("-s")) {
                 sortingAlgorithm = args[++i];
-                if (!sortingAlgorithm.equalsIgnoreCase("b") && !sortingAlgorithm.equalsIgnoreCase("s") && !sortingAlgorithm.equalsIgnoreCase("i") && !sortingAlgorithm.equalsIgnoreCase("m") && !sortingAlgorithm.equalsIgnoreCase("q")) {
+                if (!sortingAlgorithm.equalsIgnoreCase("b") && !sortingAlgorithm.equalsIgnoreCase("s") && !sortingAlgorithm.equalsIgnoreCase("i") && !sortingAlgorithm.equalsIgnoreCase("m") && !sortingAlgorithm.equalsIgnoreCase("q")&& !sortingAlgorithm.equalsIgnoreCase("h")) {
                     System.err.println("Invalid sorting algorithm");
                     return;
                 }
             } else if (args[i].equalsIgnoreCase("-S")) {
                 sortingAlgorithm = args[++i];
-                if (!sortingAlgorithm.equalsIgnoreCase("b") && !sortingAlgorithm.equalsIgnoreCase("s") && !sortingAlgorithm.equalsIgnoreCase("i") && !sortingAlgorithm.equalsIgnoreCase("m") && !sortingAlgorithm.equalsIgnoreCase("q")) {
+                if (!sortingAlgorithm.equalsIgnoreCase("b") && !sortingAlgorithm.equalsIgnoreCase("s") && !sortingAlgorithm.equalsIgnoreCase("i") && !sortingAlgorithm.equalsIgnoreCase("m") && !sortingAlgorithm.equalsIgnoreCase("q")&& !sortingAlgorithm.equalsIgnoreCase("h")) {
                     System.err.println("Invalid sorting algorithm");
                     return;
                 }
@@ -153,6 +154,9 @@ public class AppDriver {
                 break;
             case "q":
                 QuickSort.sort(shapes, comparator);
+                break;
+            case "h":
+                HeapSort.sort(shapes, comparator);
                 break;
             default:
                 System.out.println("Invalid sorting algorithm.");
